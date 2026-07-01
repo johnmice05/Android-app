@@ -3,6 +3,7 @@ package com.example.androidapp.di
 import android.content.Context
 import androidx.room.Room
 import com.example.androidapp.data.db.AppDatabase
+import com.example.androidapp.data.repository.BibleRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,5 +27,13 @@ object AppModule {
         )
             .fallbackToDestructiveMigration()
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideBibleRepository(
+        @ApplicationContext context: Context
+    ): BibleRepository {
+        return BibleRepository(context)
     }
 }
